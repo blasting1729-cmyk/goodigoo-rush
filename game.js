@@ -1,7 +1,7 @@
 
 const tg=window.Telegram?.WebApp;try{tg?.ready();tg?.expand();tg?.setHeaderColor?.('#050807');tg?.setBackgroundColor?.('#030605')}catch(e){}
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-const KEY='goodigoo_rush_v03'; let S=JSON.parse(localStorage.getItem(KEY)||'{}');
+const KEY='goodigoo_rush_v05'; let S=JSON.parse(localStorage.getItem(KEY)||'{}');
 S.coins??=350;S.xp??=0;S.best??=0;S.runs??=0;S.missions??=0;S.totalCoins??=0;S.dailyDay??=4;S.dailyClaimed??=false;S.inv??={shield:0,magnet:0,boost:0};
 const NAME=tg?.initDataUnsafe?.user?.first_name||'GoodiGoo';
 function save(){localStorage.setItem(KEY,JSON.stringify(S));render()}
