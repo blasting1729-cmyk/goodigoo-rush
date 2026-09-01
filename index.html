@@ -1,113 +1,54 @@
 <!doctype html>
-<html lang="ru">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<meta name="theme-color" content="#03060b">
-<title>GoodiGoo Rush v0.6</title>
-<link rel="stylesheet" href="style.css?v=6">
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-</head>
-<body>
-<div id="app">
+<html lang="ru"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#02050a"><title>GoodiGoo Rush v0.7</title>
+<link rel="stylesheet" href="style.css?v=7"><script src="https://telegram.org/js/telegram-web-app.js"></script></head>
+<body><div id="app">
 
-  <section id="home" class="screen active">
-    <header class="top">
-      <div class="brand">
-        <div class="mini-avatar">××</div>
-        <div><b>GOODIGOO</b><strong>RUSH ⚡</strong></div>
-      </div>
-      <div class="top-xp">
-        <span id="topLevel">LVL 1</span>
-        <b><i id="topXp">0</i> / <i id="topXpNeed">250</i> XP</b>
-        <div><i id="topXpFill"></i></div>
-      </div>
-      <div class="coins">G <b id="wallet">350</b></div>
-    </header>
+<section id="home" class="screen active">
+  <div class="art-shell home-art">
+    <img src="assets/home_ui.webp?v=7" alt="">
+    <div class="hud-mask xp-mask"><small>LVL <i id="lvl">1</i></small><b><i id="xp">0</i> / 250 XP</b><div><span id="xpbar"></span></div></div>
+    <div class="hud-mask coin-mask"><b>G <i id="coins">350</i></b></div>
+    <div class="stat-mask best-mask"><small>РЕКОРД</small><b><i id="best">0</i> м</b></div>
+    <div class="stat-mask runs-mask"><small>ЗАБЕГОВ</small><b id="runs">0</b></div>
 
-    <div class="hero">
-      <img src="assets/hero_runner.webp?v=6" alt="">
-      <div class="hero-shade"></div>
-      <div class="hero-copy">
-        <small>TELEGRAM MINI APP</small>
-        <h1>GOODIGOO<br><em>RUSH</em></h1>
-        <p>Беги, прыгай, собирай GoodiCoin и бей рекорды.</p>
-        <ul>
-          <li>Собирай монеты</li>
-          <li>Бей рекорды</li>
-          <li>Прокачивайся</li>
-        </ul>
-        <div class="season">SEASON 01</div>
-      </div>
+    <button class="hit play-hit" id="playBtn" aria-label="Начать забег"></button>
+    <button class="hit profile-hit" data-screen="profile"></button>
+    <button class="hit rating-hit" data-screen="rating"></button>
+    <button class="hit shop-hit" data-screen="shop"></button>
+    <button class="hit inventory-hit" data-screen="inventory"></button>
+    <button class="hit ach-hit" data-screen="achievements"></button>
+    <button class="hit missions-hit" data-screen="missions"></button>
+    <button class="hit settings-hit" data-screen="settings"></button>
+  </div>
+</section>
+
+<section id="game" class="screen">
+  <div class="game-wrap">
+    <img class="game-art" src="assets/game_ui.webp?v=7" alt="">
+    <div class="game-top distance-live"><b><i id="meters">0</i> м</b></div>
+    <div class="game-top coins-live"><b>G <i id="runCoins">0</i></b></div>
+    <button id="pauseBtn" class="pause-hit">Ⅱ</button>
+    <div class="lane-layer">
+      <div id="runner" class="runner"></div>
+      <div id="coinField"></div>
+      <div id="obstacleField"></div>
     </div>
+    <div class="mission-live">МИССИЯ <b id="mission">0/5</b></div>
+  </div>
+</section>
 
-    <div class="stats">
-      <div><span>РЕКОРД</span><b><i id="best">0</i> м</b><small>лучший забег</small></div>
-      <div><span>УРОВЕНЬ</span><b id="level">1</b><small><i id="xpNowSmall">0</i>/<i id="xpNeedSmall">250</i> XP</small></div>
-      <div><span>ЗАБЕГОВ</span><b id="runs">0</b><small>всего</small></div>
-    </div>
+<section id="result" class="screen page">
+ <div class="head"><button data-screen="home">←</button><h2>РЕЗУЛЬТАТ</h2></div>
+ <div class="panel result"><div class="round">G</div><h2 id="resultTitle">ЗАБЕГ ОКОНЧЕН</h2>
+ <div class="big"><b id="resultMeters">0</b><small>МЕТРОВ</small></div>
+ <div class="twocol"><div><small>GOODICOIN</small><b>G <i id="resultCoins">0</i></b></div><div><small>XP</small><b>+<i id="resultXp">0</i></b></div></div>
+ <div id="missionResult" class="missionResult">МИССИЯ</div><button id="claimBtn" class="primary">ЗАБРАТЬ НАГРАДУ</button><button id="againBtn" class="secondary">ЕЩЁ РАЗ</button></div>
+</section>
 
-    <button id="playBtn" class="play-btn"><span>▶</span><div><b>НАЧАТЬ ЗАБЕГ</b><small>ТАПАЙ, ЧТОБЫ ПРЫГАТЬ</small></div></button>
-
-    <div class="quick-grid">
-      <button data-screen="profile" class="cyan"><span>◉</span><div><b>ПРОФИЛЬ</b><small>XP и статистика</small></div></button>
-      <button data-screen="rating" class="gold"><span>★</span><div><b>РЕЙТИНГ</b><small>Лучшие игроки</small></div></button>
-      <button data-screen="rewards" class="purple"><span>◆</span><div><b>НАГРАДЫ</b><small>Ежедневный бонус</small></div></button>
-      <button data-screen="shop" class="blue"><span>▣</span><div><b>МАГАЗИН</b><small>Бусты и защита</small></div></button>
-    </div>
-
-    <nav class="bottom-nav">
-      <button data-screen="home" class="active"><span>⌂</span><small>ГЛАВНАЯ</small></button>
-      <button data-screen="achievements"><span>✦</span><small>ДОСТИЖЕНИЯ</small></button>
-      <button data-screen="inventory"><span>▤</span><small>ИНВЕНТАРЬ</small></button>
-      <button data-screen="missions"><span>◎</span><small>МИССИИ</small></button>
-      <button data-screen="settings"><span>⚙</span><small>НАСТРОЙКИ</small></button>
-    </nav>
-  </section>
-
-  <section id="game" class="screen">
-    <div class="game-head">
-      <button data-screen="home">←</button>
-      <div><b>GOODIGOO</b><span>RUSH</span></div>
-      <div class="game-coin">G <b id="runCoins">0</b></div>
-    </div>
-    <div class="game-hud">
-      <div><small>ДИСТАНЦИЯ</small><b><i id="meters">0</i> м</b></div>
-      <div><small>МИССИЯ</small><b id="mission">0/5</b></div>
-      <button id="pauseBtn">Ⅱ</button>
-    </div>
-    <canvas id="canvas"></canvas>
-    <div class="lane-hint">СВАЙП ← → МЕНЯЕТ ПОЛОСУ · ТАП = ПРЫЖОК</div>
-  </section>
-
-  <section id="result" class="screen page">
-    <div class="page-head"><button data-screen="home">←</button><div><small>GOODIGOO RUSH</small><h2>РЕЗУЛЬТАТ</h2></div></div>
-    <div class="panel result">
-      <div class="result-logo">G</div>
-      <small>RUN COMPLETE</small>
-      <h2 id="resultTitle">ЗАБЕГ ОКОНЧЕН</h2>
-      <div class="distance-result"><b id="resultMeters">0</b><span>МЕТРОВ</span></div>
-      <div class="result-grid">
-        <div><span>GOODICOIN</span><b>G <i id="resultCoins">0</i></b></div>
-        <div><span>XP</span><b>+<i id="resultXp">0</i></b></div>
-      </div>
-      <div id="missionResult" class="mission-result">МИССИЯ 0/5</div>
-      <button id="claimBtn" class="primary">ЗАБРАТЬ НАГРАДУ</button>
-      <button id="againBtn" class="secondary">ЕЩЁ РАЗ</button>
-    </div>
-  </section>
-
-  <section id="profile" class="screen page"></section>
-  <section id="rating" class="screen page"></section>
-  <section id="rewards" class="screen page"></section>
-  <section id="shop" class="screen page"></section>
-  <section id="achievements" class="screen page"></section>
-  <section id="inventory" class="screen page"></section>
-  <section id="missions" class="screen page"></section>
-  <section id="settings" class="screen page"></section>
-</div>
-
-<div id="toast"></div>
-<script src="game.js?v=6"></script>
-</body>
-</html>
+<section id="profile" class="screen page"></section><section id="rating" class="screen page"></section>
+<section id="shop" class="screen page"></section><section id="inventory" class="screen page"></section>
+<section id="achievements" class="screen page"></section><section id="missions" class="screen page"></section>
+<section id="settings" class="screen page"></section>
+</div><div id="toast"></div><script src="game.js?v=7"></script></body></html>
