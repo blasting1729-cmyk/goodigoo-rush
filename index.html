@@ -3,122 +3,118 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-  <meta name="theme-color" content="#050807">
+  <meta name="theme-color" content="#020604">
   <title>GoodiGoo Rush</title>
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-  <div id="app">
-    <header class="topbar">
-      <div class="brand"><div class="logo">G</div><div><strong>GOODIGOO</strong><span>RUSH</span></div></div>
-      <div class="wallet">🪙 <b id="wallet">350</b></div>
-    </header>
+<div id="app">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark"><span>G</span></div>
+      <div class="brand-text"><b>GOODIGOO</b><em>RUSH</em></div>
+    </div>
+    <div class="wallet"><span>G</span><b id="wallet">350</b></div>
+  </header>
 
-    <main>
-      <section id="home" class="screen active">
-        <div class="hero-card">
-          <div class="glow"></div>
-          <div class="mascot-wrap">
-            <div class="hood"><div class="face"><span>×</span><span>×</span></div><div class="chest">G</div></div>
+  <main>
+    <section id="home" class="screen active">
+      <div class="hero-card">
+        <div class="gridfx"></div><div class="scanfx"></div><div class="orb"></div>
+        <div class="corner tl"></div><div class="corner br"></div>
+
+        <div class="hero-topline">
+          <span>GOODIGOO // GAME NODE</span>
+          <b>ONLINE</b>
+        </div>
+
+        <div class="mascot-stage">
+          <div class="hood-shell">
+            <div class="hood-inner"></div>
+            <div class="visor"><i>×</i><i>×</i></div>
+            <div class="neck"></div>
+            <div class="body"><span>G</span><small>BOT</small></div>
           </div>
-          <div class="hero-copy">
-            <div class="eyebrow">TELEGRAM MINI APP</div>
-            <h1>GOODIGOO <em>RUSH</em></h1>
-            <p>Беги, прыгай, собирай GoodiCoin и бей рекорды.</p>
-            <div class="season">SEASON 01</div>
-          </div>
         </div>
 
-        <div class="stats-row">
-          <div class="stat"><span>РЕКОРД</span><b><i id="best">0</i> м</b></div>
-          <div class="stat"><span>УРОВЕНЬ</span><b id="level">1</b></div>
-          <div class="stat"><span>ЗАБЕГОВ</span><b id="runs">0</b></div>
+        <div class="hero-copy">
+          <div class="kicker">TELEGRAM MINI APP</div>
+          <h1>GOODIGOO<br><span>RUSH</span></h1>
+          <p>Ночной раннер внутри телеги.<br>Собирай монеты, качай профиль<br>и дави рекорды.</p>
+          <div class="season-chip"><small>SEASON</small><b>01</b></div>
         </div>
 
-        <button id="playBtn" class="primary play">🎮 НАЧАТЬ ЗАБЕГ<small>тапай, чтобы прыгать</small></button>
+        <div class="hero-footer"><span>⚡ LIVE BUILD</span><span>v0.4</span></div>
+      </div>
 
-        <div class="menu-grid">
-          <button data-screen="profile"><span>👤</span><b>Профиль</b><small>XP и статистика</small></button>
-          <button data-screen="rating"><span>🏆</span><b>Рейтинг</b><small>Лучшие игроки</small></button>
-          <button data-screen="rewards"><span>🎁</span><b>Награды</b><small>Ежедневный бонус</small></button>
-          <button data-screen="shop"><span>🛒</span><b>Магазин</b><small>Бусты и защита</small></button>
-        </div>
-      </section>
+      <div class="stats-row">
+        <div class="stat"><span>BEST RUN</span><b><i id="best">0</i> <small>М</small></b></div>
+        <div class="stat"><span>LEVEL</span><b id="level">1</b></div>
+        <div class="stat"><span>RUNS</span><b id="runs">0</b></div>
+      </div>
 
-      <section id="game" class="screen">
-        <div class="hud">
-          <div>🪙 <b id="runCoins">0</b></div>
-          <div class="distance"><b id="meters">0</b><span>м</span></div>
-          <button id="pauseBtn">Ⅱ</button>
-        </div>
-        <div class="missionbar"><span>🎯 Перепрыгни 5 препятствий</span><b id="mission">0/5</b></div>
-        <canvas id="canvas"></canvas>
-        <div class="tap-hint">ТАП → ПРЫЖОК</div>
-      </section>
+      <button id="playBtn" class="primary play"><span class="play-icon">▶</span><b>НАЧАТЬ ЗАБЕГ</b><small>ТАПАЙ, ЧТОБЫ ПРЫГАТЬ</small></button>
 
-      <section id="result" class="screen">
-        <div class="panel result-panel">
-          <div class="result-icon">G</div>
-          <div class="eyebrow">ЗАБЕГ ОКОНЧЕН</div>
-          <h2 id="resultTitle">НЕПЛОХО!</h2>
-          <div class="result-distance"><b id="resultMeters">0</b><span>метров</span></div>
-          <div class="result-grid">
-            <div><span>Собрано</span><b>🪙 <i id="resultCoins">0</i></b></div>
-            <div><span>Награда</span><b>⚡ +<i id="resultXp">0</i> XP</b></div>
-          </div>
-          <div id="missionResult" class="mission-result">🎯 Задание: 0/5</div>
-          <button id="claimBtn" class="primary">ЗАБРАТЬ НАГРАДУ</button>
-          <button id="againBtn" class="secondary">ЕЩЁ РАЗ</button>
-          <button data-screen="home" class="ghost">← На главную</button>
-        </div>
-      </section>
+      <div class="menu-grid">
+        <button data-screen="profile"><span class="menu-icon">◉</span><div><b>Профиль</b><small>XP и статистика</small></div><i>›</i></button>
+        <button data-screen="rating"><span class="menu-icon">▲</span><div><b>Рейтинг</b><small>Лучшие игроки</small></div><i>›</i></button>
+        <button data-screen="rewards"><span class="menu-icon">◆</span><div><b>Награды</b><small>Ежедневный бонус</small></div><i>›</i></button>
+        <button data-screen="shop"><span class="menu-icon">▣</span><div><b>Магазин</b><small>Бусты и защита</small></div><i>›</i></button>
+      </div>
+    </section>
 
-      <section id="profile" class="screen">
-        <div class="section-head"><button data-screen="home">←</button><div><span>GOODIGOO ID</span><h2>ПРОФИЛЬ</h2></div></div>
-        <div class="panel profile-card"><div class="avatar">G</div><div><span>ИГРОК</span><h3 id="username">GoodiGoo</h3><p>Уровень <b id="profileLevel">1</b> · <i id="rankName">Новичок</i></p></div></div>
-        <div class="panel xp-panel"><div><span>⚡ XP</span><b><i id="xpNow">0</i>/100</b></div><div class="bar"><i id="xpFill"></i></div></div>
-        <div class="profile-grid">
-          <div class="panel"><span>🏁 Лучший забег</span><b><i id="profileBest">0</i> м</b></div>
-          <div class="panel"><span>🎮 Всего забегов</span><b id="profileRuns">0</b></div>
-          <div class="panel"><span>🪙 GoodiCoin</span><b id="profileCoins">350</b></div>
-          <div class="panel"><span>🎯 Задания</span><b id="profileMissions">0</b></div>
-        </div>
-        <h3 class="subhead">ДОСТИЖЕНИЯ</h3>
-        <div class="achievement-list">
-          <div id="ach100"><span>🏃</span><div><b>Первые 100 м</b><small>Пробеги 100 метров</small></div></div>
-          <div id="achCoins"><span>💰</span><div><b>Коллекционер</b><small>Собери 25 монет</small></div></div>
-          <div id="ach500"><span>🔥</span><div><b>Без тормозов</b><small>Пробеги 500 метров</small></div></div>
-        </div>
-      </section>
+    <section id="game" class="screen">
+      <div class="hud">
+        <div class="hud-chip">G <b id="runCoins">0</b></div>
+        <div class="distance"><b id="meters">0</b><span>м</span></div>
+        <button id="pauseBtn">Ⅱ</button>
+      </div>
+      <div class="missionbar"><span>МИССИЯ // ПЕРЕПРЫГНИ 5</span><b id="mission">0/5</b></div>
+      <canvas id="canvas"></canvas>
+      <div class="tap-hint">TAP TO JUMP</div>
+    </section>
 
-      <section id="rating" class="screen">
-        <div class="section-head"><button data-screen="home">←</button><div><span>SEASON 01</span><h2>РЕЙТИНГ</h2></div></div>
-        <div class="tabs"><button class="active">НЕДЕЛЯ</button><button>СЕЗОН</button><button>ДЕНЬ</button></div>
-        <div class="podium"><div><span>🥈</span><b>NEO</b><small>980 м</small></div><div class="winner"><span>👑</span><b>SHADOW</b><small>1105 м</small></div><div><span>🥉</span><b>FASTBOY</b><small>875 м</small></div></div>
-        <div id="rankList" class="rank-list"></div>
-      </section>
+    <section id="result" class="screen">
+      <div class="panel result-panel">
+        <div class="result-icon">G</div><div class="eyebrow">RUN COMPLETE</div><h2 id="resultTitle">ЗАБЕГ ОКОНЧЕН</h2>
+        <div class="result-distance"><b id="resultMeters">0</b><span>МЕТРОВ</span></div>
+        <div class="result-grid"><div><span>COINS</span><b>G <i id="resultCoins">0</i></b></div><div><span>XP</span><b>+<i id="resultXp">0</i></b></div></div>
+        <div id="missionResult" class="mission-result">МИССИЯ 0/5</div>
+        <button id="claimBtn" class="primary">ЗАБРАТЬ НАГРАДУ</button><button id="againBtn" class="secondary">ЕЩЁ РАЗ</button><button data-screen="home" class="ghost">← На главную</button>
+      </div>
+    </section>
 
-      <section id="rewards" class="screen">
-        <div class="section-head"><button data-screen="home">←</button><div><span>СЕРИЯ ВХОДОВ</span><h2>НАГРАДЫ</h2></div></div>
-        <div class="panel reward-hero"><div>🎁</div><h3>НЕ ПРОПУСКАЙ ДНИ</h3><p>Награда растёт каждый день.</p><b>🔥 Серия: <i id="streak">4</i> дня</b></div>
-        <div id="days" class="days"></div>
-        <button id="dailyBtn" class="primary">ЗАБРАТЬ СЕГОДНЯ</button>
-      </section>
+    <section id="profile" class="screen">
+      <div class="section-head"><button data-screen="home">←</button><div><span>GOODIGOO ID</span><h2>ПРОФИЛЬ</h2></div></div>
+      <div class="panel profile-card"><div class="avatar">G</div><div><span>PLAYER</span><h3 id="username">GoodiGoo</h3><p>Уровень <b id="profileLevel">1</b> · <i id="rankName">Новичок</i></p></div></div>
+      <div class="panel xp-panel"><div><span>XP PROGRESS</span><b><i id="xpNow">0</i>/100</b></div><div class="bar"><i id="xpFill"></i></div></div>
+      <div class="profile-grid"><div class="panel"><span>BEST RUN</span><b><i id="profileBest">0</i> м</b></div><div class="panel"><span>RUNS</span><b id="profileRuns">0</b></div><div class="panel"><span>GOODICOIN</span><b id="profileCoins">350</b></div><div class="panel"><span>MISSIONS</span><b id="profileMissions">0</b></div></div>
+      <h3 class="subhead">ACHIEVEMENTS</h3>
+      <div class="achievement-list"><div id="ach100"><span>01</span><div><b>Первые 100 м</b><small>Пробеги 100 метров</small></div></div><div id="achCoins"><span>02</span><div><b>Коллекционер</b><small>Собери 25 монет</small></div></div><div id="ach500"><span>03</span><div><b>Без тормозов</b><small>Пробеги 500 метров</small></div></div></div>
+    </section>
 
-      <section id="shop" class="screen">
-        <div class="section-head"><button data-screen="home">←</button><div><span>GOODIGOO MARKET</span><h2>МАГАЗИН</h2></div></div>
-        <div class="panel shop-balance"><span>ТВОЙ БАЛАНС</span><b>🪙 <i id="shopWallet">350</i></b></div>
-        <div class="shop-list">
-          <button data-item="shield" data-price="120"><span>🛡️</span><div><b>ЩИТ</b><small>Спасает от одного столкновения</small></div><strong>120 🪙</strong></button>
-          <button data-item="magnet" data-price="180"><span>🧲</span><div><b>МАГНИТ</b><small>Притягивает монеты весь забег</small></div><strong>180 🪙</strong></button>
-          <button data-item="boost" data-price="250"><span>🚀</span><div><b>РЫВОК</b><small>Бонус скорости на старте</small></div><strong>250 🪙</strong></button>
-        </div>
-        <div class="panel inventory"><span>ИНВЕНТАРЬ</span><b id="inventory">пусто</b></div>
-      </section>
-    </main>
-  </div>
-  <div id="toast"></div>
-  <script src="game.js?v=3"></script>
-</body>
-</html>
+    <section id="rating" class="screen">
+      <div class="section-head"><button data-screen="home">←</button><div><span>SEASON 01</span><h2>РЕЙТИНГ</h2></div></div>
+      <div class="tabs"><button class="active">НЕДЕЛЯ</button><button>СЕЗОН</button><button>ДЕНЬ</button></div>
+      <div class="podium"><div><span>#2</span><b>NEO</b><small>980 м</small></div><div class="winner"><span>#1</span><b>SHADOW</b><small>1105 м</small></div><div><span>#3</span><b>FASTBOY</b><small>875 м</small></div></div>
+      <div id="rankList" class="rank-list"></div>
+    </section>
+
+    <section id="rewards" class="screen">
+      <div class="section-head"><button data-screen="home">←</button><div><span>LOGIN STREAK</span><h2>НАГРАДЫ</h2></div></div>
+      <div class="panel reward-hero"><div class="reward-symbol">◆</div><h3>НЕ ПРОПУСКАЙ ДНИ</h3><p>Чем длиннее серия — тем жирнее награда.</p><b>СЕРИЯ // <i id="streak">4</i> ДНЯ</b></div>
+      <div id="days" class="days"></div><button id="dailyBtn" class="primary">ЗАБРАТЬ СЕГОДНЯ</button>
+    </section>
+
+    <section id="shop" class="screen">
+      <div class="section-head"><button data-screen="home">←</button><div><span>GOODIGOO MARKET</span><h2>МАГАЗИН</h2></div></div>
+      <div class="panel shop-balance"><span>БАЛАНС</span><b>G <i id="shopWallet">350</i></b></div>
+      <div class="shop-list"><button data-item="shield" data-price="120"><span>01</span><div><b>ЩИТ</b><small>Спасает от одного столкновения</small></div><strong>120 G</strong></button><button data-item="magnet" data-price="180"><span>02</span><div><b>МАГНИТ</b><small>Притягивает монеты весь забег</small></div><strong>180 G</strong></button><button data-item="boost" data-price="250"><span>03</span><div><b>РЫВОК</b><small>Бонус скорости на старте</small></div><strong>250 G</strong></button></div>
+      <div class="panel inventory"><span>ИНВЕНТАРЬ</span><b id="inventory">пусто</b></div>
+    </section>
+  </main>
+</div>
+<div id="toast"></div>
+<script src="game.js?v=4"></script>
+</body></html>
